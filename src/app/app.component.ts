@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpDownloadProgressEvent, HttpEvent, HttpEventType } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -7,7 +6,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -20,7 +19,7 @@ export class AppComponent {
 
   responses = signal<{ id: number }[]>([]);
 
-  getIds() {
+  getData() {
     this.loadingResponse = true;
     this._http.get(environment.BACKEND_URL, { observe: 'events', responseType: 'text', reportProgress: true }).subscribe((event: HttpEvent<string>) => {
       if (event.type === HttpEventType.DownloadProgress) {
