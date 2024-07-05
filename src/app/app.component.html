@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="section">
+    <button class="button" [disabled]="loadingResponse" (click)="getIds()">Send request</button>
+  </div>
+  
+  <div class="section">
+    <span class="title">Concatenated string contents: &nbsp;</span>
+    <pre class="text-content">{{ response.content }}</pre>
+  </div>
+
+
+  <div class="section">
+    <span class="title">Object array contents: &nbsp;</span>
+    <div class="grid-container">
+      @for(entry of responses(); track entry.id) {
+        <span class="grid-item">{{ entry.id }}</span>
+      }
+    </div>
+  </div>
+</div>
